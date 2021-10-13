@@ -1,6 +1,6 @@
 import { HttpService, Injectable, OnModuleInit } from '@nestjs/common';
 import { Station } from './Station';
-import { RawData } from './RawData';
+import { RawStation } from './RawStation';
 import { raw } from 'express';
 
 @Injectable()
@@ -15,8 +15,22 @@ export class AppService implements OnModuleInit {
       .subscribe((response) => this.toStation(response.data));
   }
 
-  toStation(rawData: RawData[]): void {
-    rawData.forEach((rawStation) => this.addStation(rawStation.fields));
+  toStation(rawData: RawStation[]): void {
+    rawData.forEach((rawStation) => {
+      const station: Station = {
+        id_station: rawStation.fields.id_station,
+        ylatitude: rawStation.fields.ylatitude,
+        xlongitude: rawStation.fields.xlongitude,
+        type_prise: rawStation.fields.type_prise,
+        accessibilite: rawStation.fields.accessibilite,
+        region: rawStation.fields.region,
+        ad_station: rawStation.fields.ad_station,
+        puiss_max: rawStation.fields.puiss_max,
+        acces_recharge: rawStation.fields.acces_recharge,
+        nbre_pdc: rawStation.fields.nbre_pdc,
+      };
+      this.addStation(station);
+    });
   }
   addStation(station: Station): void {
     this.stations.set(station.id_station, station);

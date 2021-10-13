@@ -26,7 +26,7 @@ export interface Geometry {
   coordinates: number[];
 }
 
-export interface RawData {
+export interface RawStation {
   datasetid: string;
   recordid: string;
   fields: Fields;
