@@ -5,10 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".FragmentStationList">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/f_book_list_rcv_books"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:itemCount="3"
+        tools:listitem="@layout/row_station" />
+
 
 </FrameLayout>
