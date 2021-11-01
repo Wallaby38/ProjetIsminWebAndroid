@@ -1,22 +1,31 @@
 package com.ismin.csproject
 
 class StationList {
-    private val stations = HashMap<String, StationToView>()
+    private val stations = HashMap<String, Station>()
     constructor() {
-        stations["coucou"] = StationToView("Gardanne","prise", "24/24")
-        stations["couco"] = StationToView("Gardanne","prise", "24/24")
-        stations["coucu"] = StationToView("Gardanne","prise", "24/24")
-        stations["couou"] = StationToView("Gardanne","prise", "24/24")
-        stations["cocou"] = StationToView("Gardanne","prise", "24/24")
-        stations["cucou"] = StationToView("Gardanne","prise", "24/24")
-        stations["oucou"] = StationToView("Gardanne","prise", "24/24")
-        stations["ucou"] = StationToView("Gardanne","prise", "24/24")
-        stations["cou"] = StationToView("Gardanne","prise", "24/24")
+
+        stations["coucou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["couco"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["coucu"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["couou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["cocou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["cucou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["oucou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["ucou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["cou"] =Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
 
 
     }
 
-    fun getAllStations(): ArrayList<StationToView> {
+    fun getAllStationsToView() : ArrayList<StationToView> {
+        val stationsToView  : ArrayList<StationToView> = ArrayList()
+        for(it in getAllStations()) {
+            stationsToView.add(StationToView(it.ad_station,it.acces_recharge,it.accessibilite))
+        }
+        return stationsToView
+    }
+
+    fun getAllStations(): ArrayList<Station> {
         return ArrayList(stations.values.sortedBy { it.ad_station })
     }
 }

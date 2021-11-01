@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 class MainActivity : AppCompatActivity() {
     private val stations = StationList()
 
-    private val adapter = StationAdapter(stations.getAllStations())
+    private val adapter = StationAdapter(stations.getAllStationsToView())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayStationList() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        val fragment = FragmentStationList.newInstance(stations.getAllStations())
+        val fragment = FragmentStationList.newInstance(stations.getAllStationsToView())
+        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
+        fragmentTransaction.commit()
+    }
+
+    private fun displayInfoApp() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val fragment = AppInfo.newInstance()
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
         fragmentTransaction.commit()
     }
@@ -43,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             R.id.list -> {
                 // User chose the "Settings" item, show the app settings UI...
                 Toast.makeText(this, "LISTE", Toast.LENGTH_SHORT).show()
+                displayStationList()
                 true
             }
             R.id.map -> {
@@ -53,6 +61,7 @@ class MainActivity : AppCompatActivity() {
             R.id.info -> {
                 // User chose the "Favorite" action, mark the current item as a favorite...
                 Toast.makeText(this, "INFO", Toast.LENGTH_SHORT).show()
+                displayInfoApp()
                 true
             }
             // If we got here, the user's action was not recognized.
