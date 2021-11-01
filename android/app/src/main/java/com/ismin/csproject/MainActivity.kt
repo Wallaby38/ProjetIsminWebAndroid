@@ -20,10 +20,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        displayStationList()
 
-        val rcvBooks = findViewById<RecyclerView>(R.id.a_main_rcv_books)
-        rcvBooks.layoutManager = LinearLayoutManager(this)
-        rcvBooks.adapter = adapter
+    }
+
+
+    private fun displayStationList() {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val fragment = FragmentStationList.newInstance(stations.getAllStations())
+        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
+        fragmentTransaction.commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

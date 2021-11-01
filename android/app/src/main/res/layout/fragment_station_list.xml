@@ -6,7 +6,7 @@
     tools:context=".FragmentStationList">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/f_book_list_rcv_books"
+        android:id="@+id/f_station_list_rcv_stations"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:itemCount="3"
