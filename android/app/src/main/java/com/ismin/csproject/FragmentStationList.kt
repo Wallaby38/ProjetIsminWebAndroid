@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -38,7 +39,12 @@ class FragmentStationList : Fragment() {
         val rcvStation = view.findViewById<RecyclerView>(R.id.f_station_list_rcv_stations)
         rcvStation.layoutManager = LinearLayoutManager(context)
         rcvStation.adapter = adapter
+        adapter.setOnItemClickListener(object : StationAdapter.onItemClickListener{
+            override fun onItemClick(position: String) {
+                Toast.makeText(activity,position.toString(),Toast.LENGTH_SHORT).show()
+            }
 
+        })
         return view;
     }
 

@@ -20,7 +20,7 @@ class StationList {
     fun getAllStationsToView() : ArrayList<StationToView> {
         val stationsToView  : ArrayList<StationToView> = ArrayList()
         for(it in getAllStations()) {
-            stationsToView.add(StationToView(it.ad_station,it.acces_recharge,it.accessibilite))
+            stationsToView.add(StationToView(it.id_station,it.ad_station,it.acces_recharge,it.accessibilite))
         }
         return stationsToView
     }
