@@ -11,8 +11,72 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Id Station"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/type_prise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="type_prise"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acces_recharge" />
+
+    <TextView
+        android:id="@+id/accessibilite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="accessibilite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/region" />
+
+    <TextView
+        android:id="@+id/region"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="region"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ad_station" />
+
+    <TextView
+        android:id="@+id/ad_station"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ad_station"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_station" />
+
+    <TextView
+        android:id="@+id/puiss_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="puiss_max"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type_prise" />
+
+    <TextView
+        android:id="@+id/acces_recharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="acces_recharge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accessibilite" />
+
+    <TextView
+        android:id="@+id/nbre_pdc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nbre_pdc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/puiss_max" />
 </androidx.constraintlayout.widget.ConstraintLayout>
