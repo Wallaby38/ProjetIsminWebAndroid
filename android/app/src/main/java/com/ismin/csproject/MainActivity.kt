@@ -1,5 +1,6 @@
 package com.ismin.csproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -11,7 +12,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),MainActivityCallback {
     private val stations = StationList()
 
     private val adapter = StationAdapter(stations.getAllStationsToView())
@@ -67,6 +68,14 @@ class MainActivity : AppCompatActivity() {
             // If we got here, the user's action was not recognized.
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun goToInfoStation(id : String) {
+        Toast.makeText(this,id, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, DetailActivity::class.java)
+        val station : Station? = stations.getStation(id)
+        intent.putExtra("station", station)
+        this.startActivity(intent)
     }
 
 }

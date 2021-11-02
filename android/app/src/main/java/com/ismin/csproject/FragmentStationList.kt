@@ -1,5 +1,7 @@
 package com.ismin.csproject
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +21,8 @@ class FragmentStationList : Fragment() {
 
     private lateinit var stations: ArrayList<StationToView>
     private lateinit var adapter: StationAdapter
+
+    private lateinit var listener : MainActivityCallback
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +45,23 @@ class FragmentStationList : Fragment() {
         rcvStation.adapter = adapter
         adapter.setOnItemClickListener(object : StationAdapter.onItemClickListener{
             override fun onItemClick(position: String) {
-                Toast.makeText(activity,position.toString(),Toast.LENGTH_SHORT).show()
+                //Toast.makeText(activity,position, Toast.LENGTH_SHORT).show()
+                listener.goToInfoStation(position)
             }
 
         })
         return view;
     }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is MainActivityCallback) {
+            listener = context
+        } else {
+            throw RuntimeException("$context must implement MyActivityCallback")
+        }
+    }
+
 
     companion object {
         @JvmStatic

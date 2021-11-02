@@ -4,7 +4,7 @@ class StationList {
     private val stations = HashMap<String, Station>()
     constructor() {
 
-        stations["coucou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["3425232523"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
         stations["couco"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
         stations["coucu"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
         stations["couou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
@@ -27,5 +27,9 @@ class StationList {
 
     fun getAllStations(): ArrayList<Station> {
         return ArrayList(stations.values.sortedBy { it.ad_station })
+    }
+
+    fun getStation(id: String) : Station? {
+        return stations[id]
     }
 }
