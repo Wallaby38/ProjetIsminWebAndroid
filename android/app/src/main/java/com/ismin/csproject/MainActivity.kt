@@ -11,8 +11,11 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 
-class MainActivity : AppCompatActivity(),MainActivityCallback {
+class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback {
     private val stations = StationList()
 
     private val adapter = StationAdapter(stations.getAllStationsToView())
@@ -57,6 +60,7 @@ class MainActivity : AppCompatActivity(),MainActivityCallback {
             R.id.map -> {
                 // User chose the "Favorite" action, mark the current item as a favorite...
                 Toast.makeText(this, "MAP", Toast.LENGTH_SHORT).show()
+                displayMap()
                 true
             }
             R.id.info -> {
@@ -70,12 +74,25 @@ class MainActivity : AppCompatActivity(),MainActivityCallback {
         }
     }
 
+
+    fun displayMap() {
+        val supportMapFragment: SupportMapFragment = SupportMapFragment.newInstance()
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        supportMapFragment.getMapAsync(this)
+        fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, supportMapFragment)
+        fragmentTransaction.commit()
+    }
+
     override fun goToInfoStation(id : String) {
         Toast.makeText(this,id, Toast.LENGTH_SHORT).show()
         val intent = Intent(this, DetailActivity::class.java)
         val station : Station? = stations.getStation(id)
         intent.putExtra("station", station)
         this.startActivity(intent)
+    }
+
+    override fun onMapReady(gmap: GoogleMap) {
+
     }
 
 }
