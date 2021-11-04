@@ -11,14 +11,21 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.maps.android.clustering.ClusterItem
+import com.google.maps.android.clustering.ClusterManager
 
 class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback {
     private val stations = StationList()
 
     private val adapter = StationAdapter(stations.getAllStationsToView())
+    val supportMapFragment: SupportMapFragment = SupportMapFragment.newInstance()
+    private lateinit var clusterManager: ClusterManager<Point>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,7 +83,6 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
 
 
     fun displayMap() {
-        val supportMapFragment: SupportMapFragment = SupportMapFragment.newInstance()
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         supportMapFragment.getMapAsync(this)
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, supportMapFragment)
@@ -90,9 +96,72 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
         intent.putExtra("station", station)
         this.startActivity(intent)
     }
+    inner class Point(
+        lat: Double,
+        lng: Double,
+        title: String,
+        snippet: String
+    ) : ClusterItem {
+
+        private val position: LatLng
+        private val title: String
+        private val snippet: String
+
+        override fun getPosition(): LatLng {
+            return position
+        }
+
+        override fun getTitle(): String? {
+            return title
+        }
+
+        override fun getSnippet(): String? {
+            return snippet
+        }
+
+        init {
+            position = LatLng(lat, lng)
+            this.title = title
+            this.snippet = snippet
+        }
+
+
+    }
+
+
+
+
+    private fun addItems() {
+
+        // Set some lat/lng coordinates to start with.
+        var lat = 51.5145160
+        var lng = -0.1270060
+
+        // Add ten cluster items in close proximity, for purposes of this example.
+        for (i in 0..9) {
+            val offset = i / 60.0
+            lat += offset
+            lng += offset
+            val offsetItem =
+                Point(lat, lng, "Title $i", "Snippet $i")
+            clusterManager.addItem(offsetItem)
+        }
+    }
 
     override fun onMapReady(gmap: GoogleMap) {
+        gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(51.503186, -0.126446), 10f))
 
+        // Initialize the manager with the context and the map.
+        // (Activity extends context, so we can pass 'this' in the constructor.)
+        clusterManager = ClusterManager(this, gmap)
+
+        // Point the map's listeners at the listeners implemented by the cluster
+        // manager.
+        gmap.setOnCameraIdleListener(clusterManager)
+        gmap.setOnMarkerClickListener(clusterManager)
+
+        // Add cluster items (markers) to the cluster manager.
+        addItems()
     }
 
 }

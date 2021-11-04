@@ -5,14 +5,14 @@ class StationList {
     constructor() {
 
         stations["3425232523"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["couco"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["coucu"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["couco"] = Station(184.0,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["coucu"] = Station(184.7,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
         stations["couou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["cocou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["cucou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["oucou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["ucou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["cou"] =Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["cocou"] = Station(184.4,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["cucou"] = Station(184.6,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["oucou"] = Station(184.8,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["ucou"] = Station(184.9,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+        stations["cou"] =Station(184.2,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
 
 
     }
