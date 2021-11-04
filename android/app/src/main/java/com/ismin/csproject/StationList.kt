@@ -1,35 +1,39 @@
 package com.ismin.csproject
 
+import android.util.Log
+import android.widget.Toast
+
 class StationList {
     private val stations = HashMap<String, Station>()
     constructor() {
 
-        stations["3425232523"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["couco"] = Station(184.0,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["coucu"] = Station(184.7,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["couou"] = Station(184.5,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["cocou"] = Station(184.4,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["cucou"] = Station(184.6,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["oucou"] = Station(184.8,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["ucou"] = Station(184.9,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
-        stations["cou"] =Station(184.2,184.5, "24/24","3425232523","24/24","PACA","Gardanne",184.5,"acces recharge",13.5)
+
 
 
     }
 
     fun getAllStationsToView() : ArrayList<StationToView> {
-        val stationsToView  : ArrayList<StationToView> = ArrayList()
+        val stationsToView  : ArrayList<StationToView> = ArrayList<StationToView>()
+
+
         for(it in getAllStations()) {
-            stationsToView.add(StationToView(it.id_station,it.ad_station,it.acces_recharge,it.accessibilite))
+           val stationToView : StationToView = StationToView(it.id_station,it.ad_station,it.acces_recharge,it.accessibilite)
+           stationsToView.add(stationToView)
         }
         return stationsToView
     }
 
     fun getAllStations(): ArrayList<Station> {
-        return ArrayList(stations.values.sortedBy { it.ad_station })
+        return ArrayList(stations.values.filter { s -> s.id_station != null && s.ad_station != null && s.accessibilite != null && s.acces_recharge != null}.sortedBy { it.id_station })
     }
 
     fun getStation(id: String) : Station? {
         return stations[id]
     }
+
+    fun addStation(station: Station): Unit {
+        stations[station.id_station] = station
+    }
+
+
 }

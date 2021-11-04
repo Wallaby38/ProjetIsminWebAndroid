@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ismin.csproject">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +12,7 @@
         android:theme="@style/Theme.MyApplication">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="XXXXXX" />
+            android:value="XXXXX" />
 
         <activity
             android:name=".DetailActivity"

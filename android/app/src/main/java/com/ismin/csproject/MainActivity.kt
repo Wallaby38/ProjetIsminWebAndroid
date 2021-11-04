@@ -19,19 +19,33 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.ClusterItem
 import com.google.maps.android.clustering.ClusterManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback {
     private val stations = StationList()
 
-    private val adapter = StationAdapter(stations.getAllStationsToView())
+
     val supportMapFragment: SupportMapFragment = SupportMapFragment.newInstance()
     private lateinit var clusterManager: ClusterManager<Point>
+
+    val SERVER_BASE_URL = "https://project-jla-qja.cleverapps.io/"
+    val retrofit = Retrofit.Builder()
+        .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(SERVER_BASE_URL)
+        .build()
+
+    val stationService = retrofit.create(StationService::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        displayStationList()
+        loadAllStations()
+
 
     }
 
@@ -90,7 +104,6 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
     }
 
     override fun goToInfoStation(id : String) {
-        Toast.makeText(this,id, Toast.LENGTH_SHORT).show()
         val intent = Intent(this, DetailActivity::class.java)
         val station : Station? = stations.getStation(id)
         intent.putExtra("station", station)
@@ -131,25 +144,25 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
 
 
 
-    private fun addItems() {
-
-        // Set some lat/lng coordinates to start with.
-        var lat = 51.5145160
-        var lng = -0.1270060
-
-        // Add ten cluster items in close proximity, for purposes of this example.
-        for (i in 0..9) {
-            val offset = i / 60.0
-            lat += offset
-            lng += offset
-            val offsetItem =
-                Point(lat, lng, "Title $i", "Snippet $i")
-            clusterManager.addItem(offsetItem)
+    private fun addAllPoint() {
+        for (station in stations.getAllStations()) {
+            addPoint(station.ylatitude,station.xlongitude)
         }
+
+
+    }
+    private fun addPoint(lat: Double,lng: Double) {
+
+
+
+        clusterManager.addItem(Point(lat, lng, lat.toString(), lng.toString()))
+
+
+
     }
 
     override fun onMapReady(gmap: GoogleMap) {
-        gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(51.503186, -0.126446), 10f))
+        gmap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(46.227638, 2.213749), 6f))
 
         // Initialize the manager with the context and the map.
         // (Activity extends context, so we can pass 'this' in the constructor.)
@@ -160,8 +173,39 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
         gmap.setOnCameraIdleListener(clusterManager)
         gmap.setOnMarkerClickListener(clusterManager)
 
-        // Add cluster items (markers) to the cluster manager.
-        addItems()
+        addAllPoint()
+
+
+
+
     }
 
+
+    private fun loadAllStations() {
+        stationService.getStations().enqueue(object : Callback<List<Station>> {
+
+
+            override fun onFailure(call: Call<List<Station>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Error when trying to fetch stations" + t.localizedMessage, Toast.LENGTH_LONG).show()
+            }
+
+            override fun onResponse(call: Call<List<Station>>, response: Response<List<Station>>) {
+
+                val allStations: List<Station>? = response.body()
+
+                allStations?.forEach {
+                    stations.addStation(it)
+                }
+                displayStationList()
+            }
+
+
+        })
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        //Clear the Activity's bundle of the subsidiary fragments' bundles.
+        outState.clear()
+    }
 }

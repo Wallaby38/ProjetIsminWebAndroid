@@ -4,10 +4,10 @@ import java.io.Serializable
 
 
 data class Station(
-    val ylatitude: Double,
-    val xlatitude: Double,
-    val type_prise: String,
     val id_station: String,
+    val ylatitude: Double,
+    val xlongitude: Double,
+    val type_prise: String,
 
     val accessibilite: String,
     val region: String,
