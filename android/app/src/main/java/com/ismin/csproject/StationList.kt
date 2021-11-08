@@ -4,7 +4,7 @@ import android.util.Log
 import android.widget.Toast
 
 class StationList {
-    private val stations = HashMap<String, Station>()
+    private val stations = HashMap<String, StationToView>()
     constructor() {
 
 
@@ -12,26 +12,17 @@ class StationList {
 
     }
 
-    fun getAllStationsToView() : ArrayList<StationToView> {
-        val stationsToView  : ArrayList<StationToView> = ArrayList<StationToView>()
 
 
-        for(it in getAllStations()) {
-           val stationToView : StationToView = StationToView(it.id_station,it.ad_station,it.acces_recharge,it.accessibilite)
-           stationsToView.add(stationToView)
-        }
-        return stationsToView
-    }
-
-    fun getAllStations(): ArrayList<Station> {
+    fun getAllStations(): ArrayList<StationToView> {
         return ArrayList(stations.values.filter { s -> s.id_station != null && s.ad_station != null && s.accessibilite != null && s.acces_recharge != null}.sortedBy { it.id_station })
     }
 
-    fun getStation(id: String) : Station? {
+    fun getStation(id: String) : StationToView? {
         return stations[id]
     }
 
-    fun addStation(station: Station): Unit {
+    fun addStation(station: StationToView): Unit {
         stations[station.id_station] = station
     }
 

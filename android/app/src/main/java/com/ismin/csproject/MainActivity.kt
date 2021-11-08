@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
 
     private fun displayStationList() {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        val fragment = FragmentStationList.newInstance(stations.getAllStationsToView())
+        val fragment = FragmentStationList.newInstance(stations.getAllStations())
         fragmentTransaction.replace(R.id.a_main_lyt_fragment_container, fragment)
         fragmentTransaction.commit()
     }
@@ -105,8 +105,7 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
 
     override fun goToInfoStation(id : String) {
         val intent = Intent(this, DetailActivity::class.java)
-        val station : Station? = stations.getStation(id)
-        intent.putExtra("station", station)
+        intent.putExtra("id_station", id)
         this.startActivity(intent)
     }
     inner class Point(
@@ -182,16 +181,18 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
 
 
     private fun loadAllStations() {
-        stationService.getStations().enqueue(object : Callback<List<Station>> {
+        stationService.getStations().enqueue(object : Callback<List<StationToView>> {
 
 
-            override fun onFailure(call: Call<List<Station>>, t: Throwable) {
+            override fun onFailure(call: Call<List<StationToView>>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "Error when trying to fetch stations" + t.localizedMessage, Toast.LENGTH_LONG).show()
             }
 
-            override fun onResponse(call: Call<List<Station>>, response: Response<List<Station>>) {
-
-                val allStations: List<Station>? = response.body()
+            override fun onResponse(
+                call: Call<List<StationToView>>,
+                response: Response<List<StationToView>>
+            ) {
+                val allStations: List<StationToView>? = response.body()
 
                 allStations?.forEach {
                     stations.addStation(it)
