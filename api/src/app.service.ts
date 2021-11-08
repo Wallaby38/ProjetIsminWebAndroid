@@ -34,15 +34,15 @@ export class AppService implements OnModuleInit {
     });
   }
 
-
-  toStationToView(s: Station) : StationToView {
-    return {id_station: s.id_station,
+  toStationToView(s: Station): StationToView {
+    return {
+      id_station: s.id_station,
       ad_station: s.ad_station,
       acces_recharge: s.acces_recharge,
       accessibilite: s.acces_recharge,
       ylatitude: s.ylatitude,
-      xlongitude: s.xlongitude
-    }
+      xlongitude: s.xlongitude,
+    };
   }
   addStation(station: Station): void {
     this.stations.set(station.id_station, station);
@@ -53,10 +53,15 @@ export class AppService implements OnModuleInit {
   }
 
   getAllStationsToView(): StationToView[] {
-    let stationsToView : Array<StationToView> = new Array<StationToView>()
-    Array.from(this.stations.values()).forEach(s=>stationsToView.push(this.toStationToView(s)));
-    console.log(stationsToView)
-    return(stationsToView)
+    const stationsToView: Array<StationToView> = new Array<StationToView>();
+    Array.from(this.stations.values()).forEach((s) =>
+      stationsToView.push(this.toStationToView(s)),
+    );
+    console.log(stationsToView);
+    return stationsToView;
   }
 
+  getStation(id: string): Station {
+    return this.stations.get(id);
+  }
 }

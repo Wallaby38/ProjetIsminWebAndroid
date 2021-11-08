@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Station } from './Station';
 import { StationToView } from './StationToView';
@@ -10,5 +10,9 @@ export class AppController {
   @Get()
   getAllStation(): StationToView[] {
     return this.appService.getAllStationsToView();
+  }
+  @Get(':id')
+  getStation(@Param() params): Station {
+    return this.appService.getStation(params.id);
   }
 }
