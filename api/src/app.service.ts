@@ -1,5 +1,6 @@
 import { HttpService, Injectable, OnModuleInit } from '@nestjs/common';
 import { Station } from './Station';
+import { StationToView } from './StationToView';
 import { RawStation } from './RawStation';
 import { raw } from 'express';
 
@@ -32,6 +33,17 @@ export class AppService implements OnModuleInit {
       this.addStation(station);
     });
   }
+
+
+  toStationToView(s: Station) : StationToView {
+    return {id_station: s.id_station,
+      ad_station: s.ad_station,
+      acces_recharge: s.acces_recharge,
+      accessibilite: s.acces_recharge,
+      ylatitude: s.ylatitude,
+      xlongitude: s.xlongitude
+    }
+  }
   addStation(station: Station): void {
     this.stations.set(station.id_station, station);
   }
@@ -39,4 +51,12 @@ export class AppService implements OnModuleInit {
   getAllStations(): Station[] {
     return Array.from(this.stations.values());
   }
+
+  getAllStationsToView(): StationToView[] {
+    let stationsToView : Array<StationToView> = new Array<StationToView>()
+    Array.from(this.stations.values()).forEach(s=>stationsToView.push(this.toStationToView(s)));
+    console.log(stationsToView)
+    return(stationsToView)
+  }
+
 }
