@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Put } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Station } from './Station';
 import { StationToView } from './StationToView';
@@ -12,7 +12,12 @@ export class AppController {
     return this.appService.getAllStationsToView();
   }
   @Get(':id')
-  getStation(@Param() params): Station {
+  getStation(@Param('id') params): Station {
     return this.appService.getStation(params.id);
+  }
+
+  @Put(':id')
+  setBookmarked(@Param('id') params,@Body() key:boolean) {
+    this.appService.setBookmarked(params.id, key);
   }
 }

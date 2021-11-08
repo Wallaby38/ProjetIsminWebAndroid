@@ -9,4 +9,5 @@ export interface Station {
   puiss_max: number;
   acces_recharge: string;
   nbre_pdc: number;
+  bookmarked: boolean;
 }

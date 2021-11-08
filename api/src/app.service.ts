@@ -29,6 +29,7 @@ export class AppService implements OnModuleInit {
         puiss_max: rawStation.fields.puiss_max,
         acces_recharge: rawStation.fields.acces_recharge,
         nbre_pdc: rawStation.fields.nbre_pdc,
+        bookmarked: false,
       };
       this.addStation(station);
     });
@@ -42,6 +43,7 @@ export class AppService implements OnModuleInit {
       accessibilite: s.acces_recharge,
       ylatitude: s.ylatitude,
       xlongitude: s.xlongitude,
+      bookmarked: s.bookmarked,
     };
   }
   addStation(station: Station): void {
@@ -63,5 +65,11 @@ export class AppService implements OnModuleInit {
 
   getStation(id: string): Station {
     return this.stations.get(id);
+  }
+
+  setBookmarked(id: string, value: boolean): void {
+    const station: Station = this.stations.get(id);
+    station.bookmarked = value;
+    this.stations.set(id, station);
   }
 }
