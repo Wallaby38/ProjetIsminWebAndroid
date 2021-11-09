@@ -3,6 +3,8 @@ package com.ismin.csproject
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +37,11 @@ class DetailActivity : AppCompatActivity() {
             loadStation(id_station)
 
         }
+        val btnAdd = findViewById<ImageView>(R.id.favorite)
+        btnAdd.setOnClickListener { view: View? ->
+            changeBookmarked()
+        }
+
     }
 
 
@@ -69,5 +76,43 @@ class DetailActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.ad_station).text = station!!.ad_station
         findViewById<TextView>(R.id.accessibilite).text = station!!.accessibilite
         findViewById<TextView>(R.id.puiss_max).text = station!!.puiss_max.toString()
+        if(station!!.bookmarked) {
+            findViewById<ImageView>(R.id.favorite).setImageResource(R.drawable.favorite)
+        } else {
+            findViewById<ImageView>(R.id.favorite).setImageResource(R.drawable.no_favorite)
+        }
     }
+    fun changeBookmarked() {
+        val idStation: String = station!!.id_station
+        if(station!!.bookmarked) {
+            station!!.bookmarked = false
+            stationService.changeBookmarked(idStation, station!!).enqueue(object : Callback<Unit> {
+
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
+                    Toast.makeText(this@DetailActivity, "Error when trying to send station" + t.localizedMessage, Toast.LENGTH_LONG).show()
+                }
+
+                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                    displayDetails()
+                }
+
+
+            })
+        } else {
+            station!!.bookmarked = true
+            stationService.changeBookmarked(idStation, station!!).enqueue(object : Callback<Unit> {
+
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
+                    Toast.makeText(this@DetailActivity, "Error when trying to send station" + t.localizedMessage, Toast.LENGTH_LONG).show()
+                }
+
+                override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                    displayDetails()
+                }
+
+
+            })
+        }
+    }
+
 }

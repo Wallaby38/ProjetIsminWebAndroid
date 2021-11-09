@@ -15,5 +15,5 @@ data class Station(
     val puiss_max: Double,
     val acces_recharge: String,
     val nbre_pdc: Double,
-    val bookmarked: Boolean
+    var bookmarked: Boolean
 ) : Serializable
