@@ -47,7 +47,9 @@ export class AppService implements OnModuleInit {
     };
   }
   addStation(station: Station): void {
-    this.stations.set(station.id_station, station);
+    if(station.id_station != undefined && station.id_station != null) {
+      this.stations.set(station.id_station, station);
+    }
   }
 
   getAllStations(): Station[] {
@@ -64,6 +66,7 @@ export class AppService implements OnModuleInit {
   }
 
   getStation(id: string): Station {
+    console.log(this.stations.get(id));
     return this.stations.get(id);
   }
 

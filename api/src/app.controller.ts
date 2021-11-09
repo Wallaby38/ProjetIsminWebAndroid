@@ -12,8 +12,8 @@ export class AppController {
     return this.appService.getAllStationsToView();
   }
   @Get(':id')
-  getStation(@Param('id') params): Station {
-    return this.appService.getStation(params.id);
+  getStation(@Param('id') stationId): Station {
+    return this.appService.getStation(stationId);
   }
 
   @Put(':id')
