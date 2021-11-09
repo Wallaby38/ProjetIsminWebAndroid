@@ -65,10 +65,10 @@ class FragmentStationList : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(books: ArrayList<StationToView>) =
+        fun newInstance(stations: ArrayList<StationToView>) =
             FragmentStationList().apply {
                 arguments = Bundle().apply {
-                    putSerializable(ARG_STATIONS, books)
+                    putSerializable(ARG_STATIONS, stations)
                 }
             }
     }

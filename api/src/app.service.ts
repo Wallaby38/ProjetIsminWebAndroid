@@ -40,7 +40,7 @@ export class AppService implements OnModuleInit {
       id_station: s.id_station,
       ad_station: s.ad_station,
       acces_recharge: s.acces_recharge,
-      accessibilite: s.acces_recharge,
+      accessibilite: s.accessibilite,
       ylatitude: s.ylatitude,
       xlongitude: s.xlongitude,
       bookmarked: s.bookmarked,

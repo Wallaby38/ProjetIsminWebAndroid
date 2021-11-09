@@ -17,7 +17,7 @@ export class AppController {
   }
 
   @Put(':id')
-  setBookmarked(@Param('id') params,@Body() key:boolean) {
+  setBookmarked(@Param('id') params, @Body() key: boolean) {
     this.appService.setBookmarked(params.id, key);
   }
 }
