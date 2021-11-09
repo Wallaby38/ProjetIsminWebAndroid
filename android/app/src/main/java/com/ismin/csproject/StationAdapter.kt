@@ -22,12 +22,17 @@ class StationAdapter(private val stations : ArrayList<StationToView>) :
         return StationViewHolder(row,mListener)
     }
     override fun onBindViewHolder(holder: StationViewHolder, position: Int) {
-        val (id,ad_station,acces_recharge,accessibilite) = stations[position]
+        val (id,ad_station,acces_recharge,accessibilite,x,y,bookmarked) = stations[position]
 
         holder.ad_station.text = ad_station
         holder.acces_recharge.text = acces_recharge
         holder.accessibilite.text = accessibilite
         holder.id.text = id
+        if(bookmarked) {
+            holder.favorite.setImageResource(R.drawable.favorite)
+        } else {
+            holder.favorite.setImageResource(R.drawable.no_favorite)
+        }
     }
 
     override fun getItemCount(): Int {
