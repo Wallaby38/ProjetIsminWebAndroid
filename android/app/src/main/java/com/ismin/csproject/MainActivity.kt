@@ -1,5 +1,6 @@
 package com.ismin.csproject
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.Window
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +26,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 
 class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback {
     private val stations = StationList()
@@ -106,7 +109,7 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
     override fun goToInfoStation(id : String) {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra("id_station", id)
-        this.startActivity(intent)
+        startForResult.launch(intent)
     }
     inner class Point(
         lat: Double,
@@ -209,4 +212,16 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
         //Clear the Activity's bundle of the subsidiary fragments' bundles.
         outState.clear()
     }
+
+
+    private val startForResult = registerForActivityResult(StartActivityForResult()) {
+            result: ActivityResult ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val station = result.data?.getSerializableExtra(STATION_TO_CHANGE) as Station
+            stations.setBookMarked(station)
+            displayStationList()
+        }
+    }
+
+
 }

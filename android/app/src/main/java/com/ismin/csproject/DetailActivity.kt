@@ -1,9 +1,11 @@
 package com.ismin.csproject
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -13,6 +15,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.nio.BufferUnderflowException
+
+const val STATION_TO_CHANGE = "STATION_TO_CHANGE"
 
 class DetailActivity : AppCompatActivity() {
     val SERVER_BASE_URL = "https://project-jla-qja.cleverapps.io/"
@@ -23,6 +28,8 @@ class DetailActivity : AppCompatActivity() {
 
     val stationService = retrofit.create(StationService::class.java)
     var station: Station? = null;
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,9 +44,14 @@ class DetailActivity : AppCompatActivity() {
             loadStation(id_station)
 
         }
-        val btnAdd = findViewById<ImageView>(R.id.favorite)
-        btnAdd.setOnClickListener { view: View? ->
+        val btnFavorite = findViewById<ImageView>(R.id.favorite)
+        btnFavorite.setOnClickListener { view: View? ->
             changeBookmarked()
+        }
+
+        val btnBack = findViewById<Button>(R.id.back)
+        btnBack.setOnClickListener { view: View? ->
+            stopActivityAndReturnResult()
         }
 
     }
@@ -114,5 +126,13 @@ class DetailActivity : AppCompatActivity() {
             })
         }
     }
+
+    fun stopActivityAndReturnResult() {
+        val returnIntent = Intent()
+        returnIntent.putExtra(STATION_TO_CHANGE, station)
+        setResult(Activity.RESULT_OK, returnIntent)
+        finish()
+    }
+
 
 }
