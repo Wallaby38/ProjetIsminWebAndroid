@@ -70,9 +70,9 @@ export class AppService implements OnModuleInit {
     return this.stations.get(id);
   }
 
-  setBookmarked(id: string, value: boolean): void {
+  setBookmarked(id: string, s: Station): void {
     const station: Station = this.stations.get(id);
-    station.bookmarked = value;
+    station.bookmarked = s.bookmarked;
     this.stations.set(id, station);
   }
 }
