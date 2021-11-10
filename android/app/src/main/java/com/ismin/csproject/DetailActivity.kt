@@ -80,14 +80,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     fun displayDetails() {
-        findViewById<TextView>(R.id.id_station).text = station!!.id_station
+
         findViewById<TextView>(R.id.acces_recharge).text = station!!.acces_recharge
-        findViewById<TextView>(R.id.nbre_pdc).text = station!!.nbre_pdc.toString()
+        findViewById<TextView>(R.id.nbre_pdc).text = "Nombre de places : " + station!!.nbre_pdc.toString()
         findViewById<TextView>(R.id.region).text = station!!.region
-        findViewById<TextView>(R.id.type_prise).text = station!!.type_prise
+        findViewById<TextView>(R.id.type_prise).text = "Prise : " + station!!.type_prise
         findViewById<TextView>(R.id.ad_station).text = station!!.ad_station
         findViewById<TextView>(R.id.accessibilite).text = station!!.accessibilite
-        findViewById<TextView>(R.id.puiss_max).text = station!!.puiss_max.toString()
+        findViewById<TextView>(R.id.puiss_max).text = "Puissance : " + station!!.puiss_max.toString()
         if(station!!.bookmarked) {
             findViewById<ImageView>(R.id.favorite).setImageResource(R.drawable.favorite)
         } else {
