@@ -14,4 +14,9 @@
         android:id="@+id/info"
         android:title="@string/info"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/refresh"
+        android:icon="@drawable/favorite"
+        android:title="R"
+        />
 </menu>

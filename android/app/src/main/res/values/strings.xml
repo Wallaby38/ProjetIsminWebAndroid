@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="liste">LISTE</string>
+    <string name="app_name">Green Charge</string>
+    <string name="liste">LIST</string>
     <string name="map">MAP</string>
     <string name="info">INFO</string>
     <!-- TODO: Remove or change this placeholder text -->
