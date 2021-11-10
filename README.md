@@ -13,18 +13,17 @@ This project provides information on `electric car plugs` in France.
 
 The endpoint of the API is the one in the project : Project-JLA-QJA
 
-Send request
-You could use your browser or Postman to send request to the API. According to your choice. The url will be :
-
 List of methods for the API:
 
 - `GET /station` : Retrieve a summary of all data (i.e. only the most important info for display on the list and the map).
 - `GET /station/:id` : Retrieve the details of a station (for display in the details screen)
-- `PUT /station/:id (body { favoris : true/false })` : To bookmark or not to bookmark a station. 
+- `PUT /station/:id (body { station: Station })` : To bookmark or not to bookmark a station. 
 
 # Android
 
 The android apps is in the android folder. You can run it within android studio with an emulator or you smartphone.
+Add your API KEY [here](android/app/src/main/AndroidManifest.xml#L15).
+
 
 # Application
 
