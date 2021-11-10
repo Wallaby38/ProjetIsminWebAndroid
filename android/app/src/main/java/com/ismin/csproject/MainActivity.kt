@@ -94,6 +94,15 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
                 displayInfoApp()
                 true
             }
+            R.id.refresh -> {
+                // User chose the "Favorite" action, mark the current item as a favorite...
+                Toast.makeText(this, "REFRESH", Toast.LENGTH_SHORT).show()
+                stations.empty()
+                loadAllStations()
+                displayStationList()
+                true
+            }
+
             // If we got here, the user's action was not recognized.
             else -> super.onOptionsItemSelected(item)
         }

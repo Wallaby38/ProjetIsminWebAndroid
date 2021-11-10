@@ -30,5 +30,9 @@ class StationList {
         stations[station.id_station] = StationToView(station.id_station,station.ad_station,station.acces_recharge,station.accessibilite,station.ylatitude,station.xlongitude,station.bookmarked)
     }
 
+    fun empty() {
+        stations.clear()
+    }
+
 
 }

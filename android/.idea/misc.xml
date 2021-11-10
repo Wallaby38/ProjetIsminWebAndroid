@@ -5,11 +5,12 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/line.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/drawable/rect.xml" value="0.3734375" />
-        <entry key="app/src/main/res/layout/activity_detail.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_detail.xml" value="0.67" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19427083333333334" />
         <entry key="app/src/main/res/layout/fragment_app_info.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_station_list.xml" value="0.19427083333333334" />
+        <entry key="app/src/main/res/layout/fragment_station_list.xml" value="0.5334370139968896" />
         <entry key="app/src/main/res/layout/row_station.xml" value="0.67" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.33" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21510416666666668" />

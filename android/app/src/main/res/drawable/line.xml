@@ -4,11 +4,7 @@
     android:shape="rectangle">
 
 
-
-    <!-- This is the border color -->
-    <stroke android:width="4dp" android:color="@color/jaune" />
-
     <!--- This is the background color -->
-    <solid android:color="@color/jaune" />
+    <solid android:color="@color/gris" />
 
 </shape>

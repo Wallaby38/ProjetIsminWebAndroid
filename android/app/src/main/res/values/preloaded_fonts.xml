@@ -3,6 +3,8 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/boogaloo</item>
         <item>@font/hanalei_fill</item>
+        <item>@font/josefin_slab_light</item>
+        <item>@font/permanent_marker</item>
         <item>@font/sigmar_one</item>
     </array>
 </resources>

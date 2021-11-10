@@ -36,6 +36,8 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        supportActionBar?.hide()
+
         val id_station : String? = intent.getStringExtra("id_station")
 
         Toast.makeText(this,id_station.toString(), Toast.LENGTH_SHORT).show()

@@ -25,7 +25,7 @@ class StationAdapter(private val stations : ArrayList<StationToView>) :
         val (id,ad_station,acces_recharge,accessibilite,x,y,bookmarked) = stations[position]
 
         holder.ad_station.text = ad_station
-        holder.acces_recharge.text = acces_recharge
+        holder.acces_recharge.text = acces_recharge.uppercase()
         holder.accessibilite.text = accessibilite
         holder.id.text = id
         if(bookmarked) {

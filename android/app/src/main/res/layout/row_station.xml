@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
-        android:fontFamily="sans-serif-thin"
+        android:fontFamily="@font/josefin_slab_light"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,10 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/josefin_slab_semibold"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/gris"
         android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/id_station"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Gardanne" />
@@ -40,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="70dp"
-        android:fontFamily="@font/boogaloo"
+        android:fontFamily="@font/josefin_slab_semibold"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/jaune"
         android:textSize="14dp"
@@ -54,19 +55,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/sigmar_one"
+        android:fontFamily="@font/montserrat_bold"
         android:textColor="@color/vert"
-        android:textSize="13sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Payant" />
 
     <ImageView
         android:id="@+id/favorite"
-        android:layout_width="65dp"
-        android:layout_height="66dp"
+        android:layout_width="94dp"
+        android:layout_height="88dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/no_favorite" />
 
 
