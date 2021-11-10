@@ -27,6 +27,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import com.google.maps.android.ui.IconGenerator
 
 class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback {
     private val stations = StationList()
@@ -158,16 +159,16 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
 
     private fun addAllPoint() {
         for (station in stations.getAllStations()) {
-            addPoint(station.ylatitude,station.xlongitude)
+            addPoint(station.ylatitude,station.xlongitude,station.ad_station,station.accessibilite)
         }
 
 
     }
-    private fun addPoint(lat: Double,lng: Double) {
+
+    private fun addPoint(lat: Double,lng: Double,title: String, snippet: String) {
 
 
-
-        clusterManager.addItem(Point(lat, lng, lat.toString(), lng.toString()))
+        clusterManager.addItem(Point(lat, lng, title, snippet))
 
 
 
