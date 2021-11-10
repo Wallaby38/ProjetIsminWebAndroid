@@ -9,13 +9,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.nio.BufferUnderflowException
 
 const val STATION_TO_CHANGE = "STATION_TO_CHANGE"
 
@@ -40,7 +38,7 @@ class DetailActivity : AppCompatActivity() {
 
         val id_station : String? = intent.getStringExtra("id_station")
 
-        Toast.makeText(this,id_station.toString(), Toast.LENGTH_SHORT).show()
+
 
         if (id_station != null) {
             loadStation(id_station)

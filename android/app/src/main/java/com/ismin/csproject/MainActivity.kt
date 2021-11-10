@@ -78,26 +78,22 @@ class MainActivity : AppCompatActivity(),MainActivityCallback,OnMapReadyCallback
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.list -> {
-                // User chose the "Settings" item, show the app settings UI...
-                Toast.makeText(this, "LISTE", Toast.LENGTH_SHORT).show()
+
                 displayStationList()
                 true
             }
             R.id.map -> {
-                // User chose the "Favorite" action, mark the current item as a favorite...
-                Toast.makeText(this, "MAP", Toast.LENGTH_SHORT).show()
+
                 displayMap()
                 true
             }
             R.id.info -> {
-                // User chose the "Favorite" action, mark the current item as a favorite...
-                Toast.makeText(this, "INFO", Toast.LENGTH_SHORT).show()
+
                 displayInfoApp()
                 true
             }
             R.id.refresh -> {
-                // User chose the "Favorite" action, mark the current item as a favorite...
-                Toast.makeText(this, "REFRESH", Toast.LENGTH_SHORT).show()
+
                 stations.empty()
                 loadAllStations()
                 displayStationList()
